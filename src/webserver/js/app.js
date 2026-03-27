@@ -45,6 +45,43 @@ function setRouteCss(routeName) {
     };
 }
 
+function initNavToggle() {
+    const nav = navSlot.querySelector('.site-nav');
+    const toggleBtn = navSlot.querySelector('#nav-toggle');
+
+    if (!nav || !toggleBtn) {
+        return;
+    }
+
+    // Restore saved state
+    const isCollapsed = localStorage.getItem('nav-collapsed') === 'true';
+    if (isCollapsed) {
+        nav.classList.add('is-collapsed');
+        navSlot.classList.add('is-nav-collapsed');
+    }
+
+    // Toggle handler
+    toggleBtn.addEventListener('click', () => {
+        nav.classList.toggle('is-collapsed');
+        navSlot.classList.toggle('is-nav-collapsed');
+        const collapsed = nav.classList.contains('is-collapsed');
+        localStorage.setItem('nav-collapsed', collapsed);
+    });
+
+    // Close nav on link click (collapsing on mobile/small screens)
+    const links = nav.querySelectorAll('.site-nav__link');
+    links.forEach((link) => {
+        link.addEventListener('click', () => {
+            // Optional: auto-collapse on narrow screens
+            if (window.innerWidth < 1024) {
+                nav.classList.add('is-collapsed');
+                navSlot.classList.add('is-nav-collapsed');
+                localStorage.setItem('nav-collapsed', true);
+            }
+        });
+    });
+}
+
 async function renderShell(showShell, routeName) {
     if (!showShell) {
         navSlot.innerHTML = '';
@@ -57,6 +94,7 @@ async function renderShell(showShell, routeName) {
     navSlot.innerHTML = await loadPartial('/html/modules/_nav.html');
     footerSlot.innerHTML = await loadPartial('/html/modules/_footer.html');
     setActiveNavLink(routeName);
+    initNavToggle();
 }
 
 async function renderRoute() {
