@@ -1,0 +1,6 @@
+.view-card h1::after {
+    content: ' (AP 4)';
+    color: #0f766e;
+    font-size: 0.95rem;
+    font-weight: 500;
+}

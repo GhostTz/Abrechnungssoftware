@@ -3,14 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Express Server Welcome Page">
+    <meta name="description" content="Demo SPA Grundgeruest fuer den Webserver">
     <link rel="stylesheet" href="/css/main.css">
-    <title>Welcome to Express Server</title>
+    <link rel="stylesheet" href="/css/views/_default.css" id="dynamic-view-style">
+    <title>SPA Demo Grundgeruest</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to Your Express Server!</h1>
-        <p>Your server is running on localhost:3003</p>
+    <div id="app-shell" class="app-shell">
+        <header id="nav-slot"></header>
+        <main id="view-slot" class="view-slot" aria-live="polite"></main>
+        <footer id="footer-slot"></footer>
     </div>
+
+    <script type="module" src="/js/app.js"></script>
 </body>
 </html>

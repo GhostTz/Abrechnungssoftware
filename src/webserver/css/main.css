@@ -1,45 +1,299 @@
+:root {
+    --bg: #f3f5f8;
+    --surface: #ffffff;
+    --surface-2: #f8fafc;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --primary: #0f766e;
+    --primary-2: #115e59;
+    --border: #dbe3ea;
+    --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    color: #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     min-height: 100vh;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-
-.container {
-    text-align: center;
-    background: white;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    max-width: 500px;
-    width: 90%;
-}
-
-h1 {
-    font-size: 32px;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 20px;
-    line-height: 1.4;
-}
-
-p {
+    font-family: "Segoe UI", Arial, sans-serif;
     font-size: 16px;
-    color: #666;
-    line-height: 1.6;
-    margin-bottom: 10px;
+    color: var(--text);
+    background: radial-gradient(circle at top right, #d6f3ee 0%, var(--bg) 45%);
 }
 
-p:last-child {
-    margin-bottom: 0;
+.app-shell {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    grid-template-rows: 1fr auto;
+}
+
+#nav-slot {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+}
+
+#view-slot {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+#footer-slot {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.site-nav {
+    height: 100%;
+    border-right: 1px solid #e9edf3;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+}
+
+.site-nav__inner {
+    height: 100%;
+    padding: 24px 14px 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+}
+
+.site-nav__top {
+    display: grid;
+    gap: 4px;
+}
+
+.site-nav__brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.site-nav__brand-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 999px;
+    background: linear-gradient(140deg, #0ea5e9 0%, #6366f1 100%);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12);
+}
+
+.site-nav__title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #243147;
+}
+
+.site-nav__subtitle {
+    color: #8b95a7;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-left: 22px;
+}
+
+.site-nav__links {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 8px;
+}
+
+.site-nav__link {
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    text-decoration: none;
+    color: #6b7488;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    padding: 9px 10px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    transition: color 180ms ease, transform 160ms ease, border-color 180ms ease,
+        background-color 180ms ease, box-shadow 220ms ease;
+}
+
+.site-nav__link::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    bottom: 8px;
+    width: 3px;
+    border-radius: 0 6px 6px 0;
+    background: linear-gradient(180deg, #0ea5e9 0%, #6366f1 100%);
+    transform: scaleY(0);
+    transform-origin: center;
+    transition: transform 180ms ease;
+}
+
+.site-nav__link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(14, 165, 233, 0.08), rgba(99, 102, 241, 0.08));
+    opacity: 0;
+    transition: opacity 180ms ease;
+}
+
+.site-nav__link span {
+    position: relative;
+    z-index: 1;
+}
+
+.site-nav__icon {
+    width: 15px;
+    height: 15px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.site-nav__icon svg {
+    width: 15px;
+    height: 15px;
+    fill: currentColor;
+    transition: transform 180ms ease;
+}
+
+.site-nav__link:hover {
+    color: #334155;
+    border-color: #dde5f2;
+    transform: translateX(2px);
+    box-shadow: 0 6px 16px rgba(100, 116, 139, 0.13);
+}
+
+.site-nav__link:hover::after {
+    opacity: 1;
+}
+
+.site-nav__link:hover .site-nav__icon svg {
+    transform: scale(1.08);
+}
+
+.site-nav__link.is-active {
+    background: #f5f9ff;
+    color: #27344a;
+    border-color: #d7e1f2;
+    box-shadow: 0 8px 20px rgba(100, 116, 139, 0.14);
+}
+
+.site-nav__link.is-active::before {
+    transform: scaleY(1);
+}
+
+.site-nav__link.is-active::after {
+    opacity: 1;
+}
+
+.site-nav__link:active {
+    transform: translateX(2px) scale(0.985);
+    box-shadow: 0 4px 10px rgba(100, 116, 139, 0.16);
+}
+
+.view-slot {
+    max-width: 1240px;
+    width: calc(100% - 24px);
+    margin: 14px auto 0;
+    padding: 18px;
+}
+
+.view-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    padding: 24px;
+}
+
+.view-card h1,
+.view-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+}
+
+.view-card p,
+.view-card li {
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+.view-card ul {
+    margin-left: 18px;
+    display: grid;
+    gap: 6px;
+}
+
+.site-footer {
+    border-top: 1px solid var(--border);
+    background: transparent;
+}
+
+.site-footer__inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 10px 18px 14px;
+    color: var(--muted);
+    font-size: 0.875rem;
+}
+
+.is-login-view #nav-slot,
+.is-login-view #footer-slot {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .app-shell {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr auto;
+    }
+
+    #nav-slot,
+    #view-slot,
+    #footer-slot {
+        grid-column: 1;
+    }
+
+    #nav-slot {
+        grid-row: 1;
+    }
+
+    #view-slot {
+        grid-row: 2;
+    }
+
+    #footer-slot {
+        grid-row: 3;
+    }
+
+    .site-nav {
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .site-nav__inner {
+        gap: 8px;
+        padding: 14px;
+    }
+
+    .site-nav__links {
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-top: 2px;
+    }
+
+    .view-slot {
+        width: 100%;
+        margin-top: 0;
+        padding: 12px;
+    }
+
+    .view-card {
+        padding: 16px;
+    }
 }

@@ -1,0 +1,36 @@
+.view-card {
+    max-width: 480px;
+    margin: 32px auto;
+}
+
+.form-grid {
+    display: grid;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.form-field {
+    display: grid;
+    gap: 6px;
+}
+
+.form-field input {
+    border: 1px solid #dbe3ea;
+    border-radius: 8px;
+    padding: 10px 12px;
+}
+
+.btn-primary {
+    border: none;
+    border-radius: 8px;
+    padding: 10px 14px;
+    color: #ffffff;
+    background: #0f766e;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.helper-text {
+    font-size: 0.875rem;
+    color: #6b7280;
+}

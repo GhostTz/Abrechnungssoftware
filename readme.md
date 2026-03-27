@@ -153,3 +153,31 @@ Erstellung von GANT / Netzplan (Luca): Abgeschlossen
 ### Netzplan
 
 ![Netzplan](assets/netzplan.svg)
+
+---
+
+## SPA Demo-Struktur (Webserver)
+
+- html/
+: Enthält `main.html` als SPA-Shell, `index.html` als Einstieg/Weiterleitung, `modules/` für `_nav.html` und `_footer.html`, sowie `views/` für alle Unterseiten.
+- css/
+: Enthält `main.css` für das globale Layout und `views/` mit route-spezifischen Demo-CSS-Dateien (werden dynamisch geladen).
+- js/
+: Enthält `app.js` (SPA-Start + Rendering), `routes.js` (Routenliste) und `modules.js` (HTML-Loader).
+
+## AP-Zuordnung der Unterseiten
+
+- Public
+: `login-view` (einzige View ohne Navbar/Footer)
+- AP 4
+: `search-results-view`
+- AP 5
+: `customer-list-view`, `customer-detail-view`
+- AP 6
+: `offer-list-view`, `offer-detail-view`
+- AP 7
+: `invoice-list-view`, `invoice-detail-view`
+- AP 8 (RBAC)
+: `user-list-view`, `user-detail-view`, `logs-view`
+- Global/Helfer
+: `404-not-found-view`
